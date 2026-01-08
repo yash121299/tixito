@@ -1,3 +1,5 @@
+CREATE TYPE seat_status AS ENUM('AVAILABLE','BOOKED');
+
 CREATE TABLE events(
                        EventID INTEGER PRIMARY KEY,
                        EventName VARCHAR(255),
@@ -14,6 +16,7 @@ CREATE TABLE users(
 CREATE TABLE seats(
                       SeatIdentifier VARCHAR(255),
                       EventID INTEGER,
+                      status seat_status NOT NULL,
                       PRIMARY KEY (SeatIdentifier, EventID),
                       FOREIGN KEY (EventID) REFERENCES events(EventID)
 );
